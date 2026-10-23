@@ -29,7 +29,7 @@ jobs:
       - name: Build Next.js App
         run: pnpm run build
 
-      - name: Purge Export Marker
+      - name: Delete Export Marker
         run: rm -f .next/export-marker.json
 
       - name: Deploy build output via FTP
@@ -39,7 +39,3 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: APP/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            node_modules/**
