@@ -29,14 +29,13 @@ jobs:
       - name: Build Next.js App
         run: pnpm run build
 
-      - name: Deploy build output via FTP
+      - name: Zip .next Directory
+        run: zip -r next-build.zip .next
+
+      - name: Deploy Build Zip via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /home/akiequqc/APP/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            node_modules/**
