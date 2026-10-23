@@ -29,6 +29,9 @@ jobs:
       - name: Build Next.js App
         run: pnpm run build
 
+      - name: Purge Export Marker
+        run: rm -f .next/export-marker.json
+
       - name: Deploy build output via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -36,12 +39,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: APP/
-- name: Deploy build output via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: APP/
           exclude: |
-            **/.next/export-marker.json
+            **/.git*
+            **/.git*/**
+            node_modules/**
