@@ -24,8 +24,8 @@ jobs:
       - name: Build Next.js App
         run: npm run build
 
-      - name: Deploy .next via FTP
-        uses: SamKirsch/ftp-deploy-action@v4.3.4
+      - name: Deploy build output via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
